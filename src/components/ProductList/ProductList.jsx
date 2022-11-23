@@ -3,6 +3,19 @@ import './ProductList.css';
 import ProductItem from "../ProductItem/ProductItem";
 import {useTelegram} from "../../hooks/useTelegram";
 import {useCallback, useEffect} from "react";
+import { styled, alpha } from '@mui/material/styles';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import InputBase from '@mui/material/InputBase';
+const searchImg = require('./search.svg')
+const closeImg = require('./close.svg')
+import './search.svg'
+import Button from "../Button/Button";
+
+
 
 const products = [
     {id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые'},
@@ -24,6 +37,56 @@ const getTotalPrice = (items = []) => {
 const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
     const {tg, queryId} = useTelegram();
+
+
+
+
+
+    const Search = styled('div')(({ theme }) => ({
+        position: 'relative',
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: alpha(theme.palette.common.white, 0.15),
+        '&:hover': {
+            backgroundColor: alpha(theme.palette.common.white, 0.25),
+        },
+        marginLeft: 0,
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: theme.spacing(1),
+            width: 'auto',
+        },
+    }));
+
+    const SearchIconWrapper = styled('div')(({ theme }) => ({
+        padding: theme.spacing(0, 2),
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }));
+
+    const StyledInputBase = styled(InputBase)(({ theme }) => ({
+        color: 'inherit',
+        '& .MuiInputBase-input': {
+            padding: theme.spacing(1, 1, 1, 0),
+            // vertical padding + font size from searchIcon
+            paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+            transition: theme.transitions.create('width'),
+            width: '100%',
+            [theme.breakpoints.up('sm')]: {
+                width: '12ch',
+                '&:focus': {
+                    width: '20ch',
+                },
+            },
+        },
+    }));
+
+
+
+
 
     const onSendData = useCallback(() => {
         const data = {
@@ -70,7 +133,26 @@ const ProductList = () => {
     }
 
     return (
-        <div className={'list'}>
+        <div className={'list'} style={{paddingTop: '100px'}}>
+            <Box sx={{ flexGrow: 0}} style={{marginBottom: '10px', background: 'black'}}>
+                <AppBar position="fixed" style={{display: 'flex', flexDirection: 'row', width: "100%", justifyContent: 'space-around'}}>
+                    <Toolbar>
+
+                        <Search style={{width: '100%', minWidth: '200px'}}>
+                            <SearchIconWrapper>
+
+                            </SearchIconWrapper>
+                            <StyledInputBase
+                                placeholder="Search…"
+                                inputProps={{ 'aria-label': 'search' }}
+                            />
+                        </Search>
+
+                    </Toolbar>
+
+                    <Button>X</Button>
+                </AppBar>
+            </Box>
             {products.map(item => (
                 <ProductItem
                     product={item}

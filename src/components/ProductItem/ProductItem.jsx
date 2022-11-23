@@ -6,36 +6,62 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-const photo = require('./w7.jpeg')
+import {useState} from "react";
+const photo = require('./w4.jpeg')
 
 
 
 const ProductItem = ({product, className, onAdd}) => {
+    const [but, setBut] = useState(true);
+    const [total, setTotal] = useState(0);
+
     const onAddHandler = () => {
         onAdd(product);
     }
-
+    const butHandler = () => {
+        if(total <= 1){
+            setBut(true)
+            setTotal(0)
+        }else{
+            setBut(false)
+        }
+    }
+    const totalPlusHandler = () => {
+        setTotal(total + 1)
+    }
+    const totalMinusHandler = () => {
+        setTotal(total - 1)
+    }
     return (
-        <Card className='product' sx={{ maxWidth: 250 }}>
+        <Card style={{padding: '0px'}} className='product' sx={{ maxWidth: 140, maxHeight: 310}}>
             <CardMedia
                 component="img"
                 alt="green lol"
                 height="100"
                 image={photo}
             />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    Lizard
+            <CardContent style={{padding: '5px'}}>
+                <Typography style={{display: "flex", justifyContent: "center"}} gutterBottom variant="h6" component="div">
+                    {product.title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                    species, ranging across all continents except Antarctica
+                <Typography gutterBottom variant="h7" style={{display: "flex", justifyContent: "space-around"}} component="div">
+                    <div>{product.price}$</div>
                 </Typography>
+                {/*<Typography style={{display: "flex", justifyContent: "center"}} gutterBottom component="div">*/}
+                {/*   Count: {total}*/}
+                {/*</Typography>*/}
             </CardContent>
-            <CardActions>
-                <Button onClick={onAddHandler} size="small">Share</Button>
-                <Button size="small">Learn More</Button>
-            </CardActions>
+                {but ?
+                        <CardActions style={{paddingTop: '0px', justifyContent: "space-around"}}>
+                            <Button style={{color: 'black'}} onClick={() => {setBut(false); setTotal(1)}} size="small">Add</Button>
+                        </CardActions>
+                        :
+                            <CardActions style={{paddingTop: '0px', justifyContent: "space-around"}}>
+                                <Button style={{color: 'black'}} onClick={() => {totalPlusHandler()}} size="small">+</Button>
+                                <div style={{marginLeft:"10px"}}>{total}</div>
+                                <Button style={{color: 'black'}} onClick={() => {totalMinusHandler(); butHandler()}} size="small">-</Button>
+                            </CardActions>
+                        }
         </Card>
     );
 };
