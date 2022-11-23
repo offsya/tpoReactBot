@@ -134,11 +134,11 @@ const ProductList = () => {
 
     return (
         <div className={'list'} style={{paddingTop: '100px'}}>
-            <Box sx={{ flexGrow: 0}} style={{marginBottom: '10px', background: 'black'}}>
-                <AppBar position="fixed" style={{display: 'flex', flexDirection: 'row', width: "100%", justifyContent: 'space-around'}}>
+            <Box sx={{ flexGrow: 1}} style={{marginBottom: '10px', background: 'black'}}>
+                <AppBar position="fixed">
                     <Toolbar>
 
-                        <Search style={{width: '100%', minWidth: '200px'}}>
+                        <Search style={{width: '70%', minWidth: '200px'}}>
                             <SearchIconWrapper>
 
                             </SearchIconWrapper>
@@ -149,8 +149,6 @@ const ProductList = () => {
                         </Search>
 
                     </Toolbar>
-
-                    <Button>X</Button>
                 </AppBar>
             </Box>
             {products.map(item => (
