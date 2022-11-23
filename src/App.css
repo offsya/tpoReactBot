@@ -6,6 +6,5 @@
 
 body {
     background: var(--tg-theme-bg-color);
-    background-image: url("./peakpx.jpg");
     color: var(--tg-theme-text-color);
 }
