@@ -33,7 +33,7 @@ const ProductItem = ({product, className, onAdd}) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Share</Button>
+                <Button onClick={onAddHandler} size="small">Share</Button>
                 <Button size="small">Learn More</Button>
             </CardActions>
         </Card>
