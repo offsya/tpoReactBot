@@ -134,11 +134,11 @@ const ProductList = () => {
 
     return (
         <div className={'list'} style={{paddingTop: '100px'}}>
-            <Box sx={{ flexGrow: 1}} style={{marginBottom: '10px', background: 'black'}}>
+            <Box sx={{ flexGrow: 0}} style={{marginBottom: '10px'}}>
                 <AppBar position="fixed">
-                    <Toolbar>
+                    <Toolbar className='searchBar'>
 
-                        <Search style={{width: '70%', minWidth: '200px'}}>
+                        <Search style={{width: '100%', minWidth: '200px'}}>
                             <SearchIconWrapper>
 
                             </SearchIconWrapper>
