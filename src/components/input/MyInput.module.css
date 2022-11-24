@@ -1,0 +1,12 @@
+.myInput {
+    max-width: 500px;
+    width: 70%;
+    height: 35px;
+    color: var(--tg-theme-button-text-color);
+    background: var(--tg-theme-button-color);
+    padding: 5px 15px;
+    margin: 5px 0;
+    border: 1px solid teal;
+    border-radius: 5px;
+    outline:none;
+}

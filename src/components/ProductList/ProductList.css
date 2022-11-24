@@ -9,6 +9,8 @@
     margin-bottom: 10px;
 }
 .searchBar{
+    display: flex;
+    justify-content: center;
     background: var(--tg-theme-bg-color);
 }
 .search{

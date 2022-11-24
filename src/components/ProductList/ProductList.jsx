@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './ProductList.css';
 import ProductItem from "../ProductItem/ProductItem";
 import {useTelegram} from "../../hooks/useTelegram";
-import {useCallback, useEffect} from "react";
+import {useCallback, useEffect, useMemo} from "react";
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -14,31 +14,31 @@ const searchImg = require('./search.svg')
 const closeImg = require('./close.svg')
 import './search.svg'
 import Button from "../Button/Button";
+import MyInput from "../input/MyInput";
 
 
 
-const products = [
-    {id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые'},
-    {id: '2', title: 'Куртка', price: 12000, description: 'Зеленого цвета, теплая'},
-    {id: '3', title: 'Джинсы 2', price: 5000, description: 'Синего цвета, прямые'},
-    {id: '4', title: 'Куртка 8', price: 122, description: 'Зеленого цвета, теплая'},
-    {id: '5', title: 'Джинсы 3', price: 5000, description: 'Синего цвета, прямые'},
-    {id: '6', title: 'Куртка 7', price: 600, description: 'Зеленого цвета, теплая'},
-    {id: '7', title: 'Джинсы 4', price: 5500, description: 'Синего цвета, прямые'},
-    {id: '8', title: 'Куртка 5', price: 12000, description: 'Зеленого цвета, теплая'},
-]
-
-const getTotalPrice = (items = []) => {
-    return items.reduce((acc, item) => {
-        return acc += item.price
-    }, 0)
-}
 
 const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
     const {tg, queryId} = useTelegram();
 
+    const [products, setProducts] = useState([
+        {id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые'},
+        {id: '2', title: 'Куртка', price: 12000, description: 'Зеленого цвета, теплая'},
+        {id: '3', title: 'Джинсы 2', price: 5000, description: 'Синего цвета, прямые'},
+        {id: '4', title: 'Куртка 8', price: 122, description: 'Зеленого цвета, теплая'},
+        {id: '5', title: 'Джинсы 3', price: 5000, description: 'Синего цвета, прямые'},
+        {id: '6', title: 'Куртка 7', price: 600, description: 'Зеленого цвета, теплая'},
+        {id: '7', title: 'Джинсы 4', price: 5500, description: 'Синего цвета, прямые'},
+        {id: '8', title: 'Куртка 5', price: 12000, description: 'Зеленого цвета, теплая'},
+    ])
 
+    const getTotalPrice = (items = []) => {
+        return items.reduce((acc, item) => {
+            return acc += item.price
+        }, 0)
+    }
 
 
 
@@ -131,24 +131,26 @@ const ProductList = () => {
             })
         }
     }
+    const [searchQuery, setSearchQuery] = useState('')
+    const searchPosts = useMemo(() => {
+        return products.filter(posts => posts.title.toLowerCase().includes(searchQuery.toLowerCase()))
+    }, [searchQuery, products])
+
 
     return (
         <div className={'list'} style={{paddingTop: '100px'}}>
-            <Box sx={{ flexGrow: 0}} style={{marginBottom: '10px'}}>
                 <AppBar position="fixed">
                     <Toolbar className='searchBar'>
-
-                        <Search className='search' style={{width: '100%', minWidth: '200px'}}>
-                            <StyledInputBase
+                            <MyInput
+                                value={searchQuery}
+                                onChange={(e) => {
+                                    setSearchQuery(e.target.value)
+                                }}
                                 placeholder="Search…"
-                                inputProps={{ 'aria-label': 'search' }}
                             />
-                        </Search>
-
                     </Toolbar>
                 </AppBar>
-            </Box>
-            {products.map(item => (
+            {searchPosts.map(item => (
                 <ProductItem
                     product={item}
                     onAdd={onAdd}
