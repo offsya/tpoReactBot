@@ -4,6 +4,12 @@
 }
 
 
+.btn{
+    width: 10px;
+    background: var(--tg-theme-button-color);
+    color: var(--tg-theme-text-color);
+}
+
 .img {
     width: 100%;
     background: lightgray;

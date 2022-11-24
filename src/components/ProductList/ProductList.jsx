@@ -138,10 +138,7 @@ const ProductList = () => {
                 <AppBar position="fixed">
                     <Toolbar className='searchBar'>
 
-                        <Search style={{width: '100%', minWidth: '200px'}}>
-                            <SearchIconWrapper>
-
-                            </SearchIconWrapper>
+                        <Search className='search' style={{width: '100%', minWidth: '200px'}}>
                             <StyledInputBase
                                 placeholder="Search…"
                                 inputProps={{ 'aria-label': 'search' }}

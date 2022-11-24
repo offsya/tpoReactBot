@@ -53,13 +53,13 @@ const ProductItem = ({product, className, onAdd}) => {
             </CardContent>
                 {but ?
                         <CardActions style={{paddingTop: '0px', justifyContent: "space-around"}}>
-                            <Button style={{color: 'black'}} onClick={() => {setBut(false); setTotal(1)}} size="small">Add</Button>
+                            <Button className='btn' onClick={() => {setBut(false); setTotal(1)}} size="small">Add</Button>
                         </CardActions>
                         :
                             <CardActions style={{paddingTop: '0px', justifyContent: "space-around"}}>
-                                <Button style={{color: 'black'}} onClick={() => {totalPlusHandler()}} size="small">+</Button>
-                                <div style={{marginLeft:"10px"}}>{total}</div>
-                                <Button style={{color: 'black'}} onClick={() => {totalMinusHandler(); butHandler()}} size="small">-</Button>
+                                <Button className='btn' onClick={() => {totalPlusHandler()}} size="small">+</Button>
+                                <div className='btn'>{total}</div>
+                                <Button className='btn' onClick={() => {totalMinusHandler(); butHandler()}} size="small">-</Button>
                             </CardActions>
                         }
         </Card>
