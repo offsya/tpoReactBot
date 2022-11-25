@@ -124,14 +124,18 @@ const ProductList = () => {
         }
 
 
-
+        let s = false;
         setAddedItems(newItems)
         newItems.forEach(e => {
             console.log(e.total)
             if(e.total > 0){
-                useState(true)
+                s = true;
             }
         })
+
+        if(s){
+            useState(true)
+        }
 
         console.log(check)
 
