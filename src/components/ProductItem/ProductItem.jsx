@@ -16,7 +16,7 @@ const ProductItem = ({product, className, onAdd}) => {
     const [total, setTotal] = useState(0);
 
     const onAddHandler = () => {
-        onAdd(product);
+        onAdd(product, total);
     }
     const butHandler = () => {
         if(total <= 1){
@@ -53,7 +53,7 @@ const ProductItem = ({product, className, onAdd}) => {
             </CardContent>
                 {but ?
                         <CardActions style={{paddingTop: '0px', justifyContent: "space-around"}}>
-                            <Button className='btn' onClick={() => {setBut(false); setTotal(1)}} size="small">Add</Button>
+                            <Button className='btn' onClick={() => {setBut(false); setTotal(1); onAddHandler()}} size="small">Add</Button>
                         </CardActions>
                         :
                             <CardActions style={{paddingTop: '0px', justifyContent: "space-around"}}>

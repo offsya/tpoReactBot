@@ -110,8 +110,10 @@ const ProductList = () => {
         }
     }, [onSendData])
 
-    const onAdd = (product) => {
+    const onAdd = (product, total) => {
+        product.total = total;
         const alreadyAdded = addedItems.find(item => item.id === product.id);
+
         let newItems = [];
 
         if(alreadyAdded) {
@@ -120,14 +122,22 @@ const ProductList = () => {
             newItems = [...addedItems, product];
         }
 
-        setAddedItems(newItems)
 
-        if(newItems.length === 0) {
+
+        setAddedItems(newItems)
+        let check = false;
+        newItems.forEach(e => {
+            if(e.total > 0){
+                check = true;
+            }
+        })
+
+        if(!check) {
             tg.MainButton.hide();
         } else {
             tg.MainButton.show();
             tg.MainButton.setParams({
-                text: `Купить ${getTotalPrice(newItems)}`
+                text: `Buy`
             })
         }
     }
