@@ -132,6 +132,11 @@ const ProductList = () => {
             }
         })
 
+
+        tg.MainButton.show();
+        tg.MainButton.setParams({
+            text: `Buy`
+        })
         if(!check) {
             tg.MainButton.hide();
         } else {
