@@ -129,7 +129,7 @@ const ProductList = () => {
         newItems.forEach(e => {
             console.log(e.total)
             if(e.total > 0){
-                useState(e.total)
+                useState(true)
             }
         })
 

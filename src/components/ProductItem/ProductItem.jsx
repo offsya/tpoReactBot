@@ -59,7 +59,7 @@ const ProductItem = ({product, className, onAdd}) => {
                             <CardActions style={{paddingTop: '0px', justifyContent: "space-around"}}>
                                 <Button className='btn' onClick={() => {totalPlusHandler()}} size="small">+</Button>
                                 <div style={{paddingLeft: '8px'}}>{total}</div>
-                                <Button className='btn' onClick={() => {totalMinusHandler(); butHandler()}} size="small">-</Button>
+                                <Button className='btn' onClick={() => {totalMinusHandler(); butHandler(); onAddHandler()}} size="small">-</Button>
                             </CardActions>
                         }
         </Card>
