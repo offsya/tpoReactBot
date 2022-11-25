@@ -22,6 +22,7 @@ import MyInput from "../input/MyInput";
 const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
     const {tg, queryId} = useTelegram();
+    const [check, setCheck] = useState(false);
 
     const [products, setProducts] = useState([
         {id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые'},
@@ -125,7 +126,6 @@ const ProductList = () => {
 
 
         setAddedItems(newItems)
-        const [check, setCheck] = useState(false);
         newItems.forEach(e => {
             console.log(e.total)
             if(e.total > 0){
