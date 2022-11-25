@@ -111,40 +111,40 @@ const ProductList = () => {
     }, [onSendData])
 
     const onAdd = (product, total) => {
-        // product.total = total;
-        // const alreadyAdded = addedItems.find(item => item.id === product.id);
-        //
-        // let newItems = [];
-        //
-        // if(alreadyAdded) {
-        //     newItems = addedItems.filter(item => item.id !== product.id);
-        // } else {
-        //     newItems = [...addedItems, product];
-        // }
-        //
-        //
-        //
-        // setAddedItems(newItems)
-        // let check = false;
-        // newItems.forEach(e => {
-        //     if(e.total > 0){
-        //         check = true;
-        //     }
-        // })
+        product.total = total;
+        const alreadyAdded = addedItems.find(item => item.id === product.id);
 
-        tg.MainButton.show();
-        tg.MainButton.setParams({
-            text: `Buy`
+        let newItems = [];
+
+        if(alreadyAdded) {
+            newItems = addedItems.filter(item => item.id !== product.id);
+        } else {
+            newItems = [...addedItems, product];
+        }
+
+
+
+        setAddedItems(newItems)
+        const [check, setCheck] = useState(false);
+        newItems.forEach(e => {
+            console.log(e.total)
+            if(e.total > 0){
+                useState(e.total)
+            }
         })
 
-        // if(!check) {
-        //     tg.MainButton.hide();
-        // } else {
-        //     tg.MainButton.show();
-        //     tg.MainButton.setParams({
-        //         text: `Buy`
-        //     })
-        // }
+        console.log(check)
+
+        if(check) {
+            tg.MainButton.hide();
+        } else {
+            tg.MainButton.show();
+            tg.MainButton.setParams({
+                text: `Buy`
+            })
+        }
+
+
     }
     const [searchQuery, setSearchQuery] = useState('')
     const searchPosts = useMemo(() => {
