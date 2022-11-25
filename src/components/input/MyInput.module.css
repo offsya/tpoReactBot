@@ -3,6 +3,7 @@
     width: 70%;
     height: 35px;
     color: var(--tg-theme-text-color);
+    background: var(--tg-theme-bg-color);
     padding: 5px 15px;
     margin: 5px 0;
     border: none;
